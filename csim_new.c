@@ -32,5 +32,6 @@ int main(int argc, char* argv[])
 	//Fill in code here
 
     printf("the name is alex");
+    printf("hello");
     return 0;
 }
