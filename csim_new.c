@@ -14,10 +14,9 @@ SESSION: Fall 2024
 PROFESSOR: Dr. Tina Burns
 
 DESCRIPTION:
-
-
-NOTES:
+Our cache strategy incorporates a replacement strategy as well as set associativity and enhanced organization methods.
  */
+
 #include <getopt.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -66,13 +65,17 @@ int hit_count = 0;
 int eviction_count = 0;
 unsigned long long int lru_counter = 1;
 
-/* The cache we are simulating */
+/* The caches we are simulating */
 cache_t even_cache;
 cache_t odd_cache;
 cache_line_t most_used_cache[MOST_USED_SIZE];
 mem_addr_t set_index_mask;
 
-// Initializes the caches
+/*
+ * Initializes and allocates memory for the caches
+ * Sets valid, tag, lru, and access_count to 0
+ * Computes the set_index_mask
+ */
 void initCache() {
     even_cache = (cache_set_t*) malloc(sizeof(cache_set_t) * S);
     odd_cache = (cache_set_t*) malloc(sizeof(cache_set_t) * S);
@@ -99,7 +102,9 @@ void initCache() {
     set_index_mask = (mem_addr_t)(pow(2, s) - 1);
 }
 
-// Frees allocated memory
+/*
+ * Frees allocated memory 
+ */
 void freeCache() {
     for (int i = 0; i < S; i++) {
         free(even_cache[i]);
@@ -110,8 +115,9 @@ void freeCache() {
 }
 
 /*
-
-*/
+ * Replaces the least-accessed block in the most frequently used cache
+ * Updates tag, valid, lru, and access_count
+ */
 void replaceMostUsed(mem_addr_t tag) {
     int min = 0;
     for (int i = 0; i < MOST_USED_SIZE; i++) {
@@ -127,8 +133,14 @@ void replaceMostUsed(mem_addr_t tag) {
 }
 
 /*
-
-*/
+ * Accesses data at memory address addr
+ * Routes addresses to the even or odd caches based on their last digit
+ *
+ * If the address is already in the cache, increment hit_count and update lru and access_count
+ *      Updates the most frequently used cache if necessary
+ * If the address is not already in the cache, increment miss_count
+ * Increments eviction_count if a line is evicted
+ */
 void accessData(mem_addr_t addr) {
     unsigned long long int eviction_lru = ULONG_MAX;
     unsigned int eviction_line = 0;
@@ -181,8 +193,8 @@ void accessData(mem_addr_t addr) {
 }
 
 /*
-
-*/
+ * Replays the given trace file to simulate the cache
+ */
 void replayTrace(char* trace_fn) {
     char buf[1000];
     mem_addr_t addr = 0;
@@ -217,8 +229,8 @@ void replayTrace(char* trace_fn) {
 }
 
 /*
-
-*/
+ * Prints usage information
+ */
 void printUsage(char* argv[]) {
     printf("Usage: %s [-hv] -s <num> -E <num> -b <num> -t <file>\n", argv[0]);
     printf("Options:\n");
@@ -237,7 +249,7 @@ void printUsage(char* argv[]) {
 
 
 /*
- * main - Main routine 
+ * Main routine 
  */
 int main(int argc, char* argv[])
 {
