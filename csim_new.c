@@ -14,7 +14,8 @@ SESSION: Fall 2024
 PROFESSOR: Dr. Tina Burns
 
 DESCRIPTION:
-Our cache strategy incorporates a replacement strategy as well as set associativity and enhanced organization methods.
+Our cache strategy incorporates a replacement strategy
+    as well as set associativity and enhanced organization methods.
  */
 
 #include <getopt.h>
