@@ -1,5 +1,4 @@
 /*
-FOR SET ASSOCIATIVE CACHE 
 GROUP MEMBERS: 
     Ryan Xu (rwx1)
     Alex Oteng (afo35)
