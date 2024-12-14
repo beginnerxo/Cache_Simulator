@@ -3,7 +3,6 @@ FOR SET ASSOCIATIVE CACHE
 GROUP MEMBERS: 
     Ryan Xu (rwx1)
     Alex Oteng (afo35)
-    Alex Oteng (afo35)
     Harjas Rangi (hkr23)
     Humza Nawaz (hsn13)
     Pariksheet Naik
