@@ -5,7 +5,7 @@ GROUP MEMBERS:
     Alex Oteng (afo35)
     Harjas Rangi (hkr23)
     Humza Nawaz (hsn13)
-    Pariksheet Naik
+    Pariksheet Naik (pvn14)
 #FILL IN
 
 LOCATION: Rutgers University
